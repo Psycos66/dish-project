@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DishController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('guest');
+
+Route::get('/dish', [DishController::class, 'index'])->middleware('auth');
+
+require __DIR__.'/auth.php';
